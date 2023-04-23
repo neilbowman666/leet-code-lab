@@ -6,6 +6,7 @@ import "fmt"
 // ref: https://leetcode.cn/problems/powx-n/
 // ref: https://blog.csdn.net/foolS22/article/details/125452877
 func myPow(x float64, n int) float64 {
+	fmt.Printf("myPow running, x:%v, n:%v\n", x, n)
 	mount := x
 	ans := 1.0
 
