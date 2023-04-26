@@ -26,8 +26,7 @@ func myPow1(x float64, n int) float64 {
 }
 
 // myPow2
-// ref: https://leetcode.cn/problems/powx-n/
-// ref: https://blog.csdn.net/foolS22/article/details/125452877
+// 递归改迭代方法：https://blog.csdn.net/u014698348/article/details/53216934
 func myPow2(x float64, n int) float64 {
 	fmt.Printf("myPow running, x:%v, n:%v\n", x, n)
 	mount := x
@@ -41,20 +40,25 @@ func myPow2(x float64, n int) float64 {
 
 	for {
 		// golang 语法不支持，这里模拟 while N > 0
+		// 每次循环 N = N /2，最后一次循环时 N = 1，更新为 0 后将不再下一次循环。
 		if N <= 0 {
+			fmt.Printf("now N is: %v, stopped.\n", N)
 			break
 		}
 
 		ansUpdatedMsg := ""
+		oldAns := ans
 		if N%2 == 1 {
 			ans *= mount // 出现奇数指数则累积乘一次，最后一次迭代为1也会累积乘一次
 			ansUpdatedMsg = ", ans updated"
 		}
 
-		N /= 2         // 每次迭代指数减半。最后一次的循环更新为0，将不进行下一次迭代。
+		oldN := N
+		oldMount := mount
 		mount *= mount // 相乘迭代
+		N /= 2         // 每次迭代指数减半。最后一次的循环更新为0，将不进行下一次迭代。
 
-		fmt.Printf("mount(powed):%v, N: %v, ans:%v%v\n", mount, N, ans, ansUpdatedMsg)
+		fmt.Printf("oldAns:%v,\t oldMount:%v,\t mount(powed):%v,\t oldN:%v,\t N(halfed):%v,\t ans:%v%v.\n", oldAns, oldMount, mount, oldN, N, ans, ansUpdatedMsg)
 	}
 
 	if n >= 0 {
@@ -66,7 +70,8 @@ func myPow2(x float64, n int) float64 {
 
 func Test() {
 	ansFunc := myPow2
-	fmt.Printf("leet code No.50 result sample 1: %v\n\n", ansFunc(2, 10))
-	fmt.Printf("leet code No.50 result sample 2: %v\n\n", ansFunc(2.1, 3))
-	fmt.Printf("leet code No.50 result sample 3: %v\n\n", ansFunc(2, -2))
+	fmt.Printf(">>>>>>>>>>> leet code No.50 result sample 1: %v\n\n", ansFunc(2, 10))
+	fmt.Printf(">>>>>>>>>>> leet code No.50 result sample 2: %v\n\n", ansFunc(2.1, 3))
+	fmt.Printf(">>>>>>>>>>> leet code No.50 result sample 3: %v\n\n", ansFunc(2, -2))
+	fmt.Printf(">>>>>>>>>>> my test: %v\n\n", ansFunc(2, 11))
 }
