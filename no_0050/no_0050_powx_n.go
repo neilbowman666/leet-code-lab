@@ -2,10 +2,33 @@ package no_0050
 
 import "fmt"
 
-// myPow
+func quickM(x float64, N int) float64 {
+	if N == 0 { // 退出递归的条件
+		return 1.0
+	}
+	y := quickM(x, N/2)
+	if N%2 == 0 {
+		return y * y
+	} else {
+		return y * y * x
+	}
+}
+
+// myPow1
 // ref: https://leetcode.cn/problems/powx-n/
 // ref: https://blog.csdn.net/foolS22/article/details/125452877
-func myPow(x float64, n int) float64 {
+func myPow1(x float64, n int) float64 {
+	if n > 0 {
+		return quickM(x, n)
+	} else {
+		return 1.0 / quickM(x, n)
+	}
+}
+
+// myPow2
+// ref: https://leetcode.cn/problems/powx-n/
+// ref: https://blog.csdn.net/foolS22/article/details/125452877
+func myPow2(x float64, n int) float64 {
 	fmt.Printf("myPow running, x:%v, n:%v\n", x, n)
 	mount := x
 	ans := 1.0
@@ -42,7 +65,7 @@ func myPow(x float64, n int) float64 {
 }
 
 func Test() {
-	ansFunc := myPow
+	ansFunc := myPow2
 	fmt.Printf("leet code No.50 result sample 1: %v\n\n", ansFunc(2, 10))
 	fmt.Printf("leet code No.50 result sample 2: %v\n\n", ansFunc(2.1, 3))
 	fmt.Printf("leet code No.50 result sample 3: %v\n\n", ansFunc(2, -2))
