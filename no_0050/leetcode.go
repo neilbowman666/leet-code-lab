@@ -67,11 +67,3 @@ func myPow2(x float64, n int) float64 {
 		return 1.0 / ans
 	}
 }
-
-func Test() {
-	ansFunc := myPow2
-	fmt.Printf(">>>>>>>>>>> leet code No.50 result sample 1: %v\n\n", ansFunc(2, 10))
-	fmt.Printf(">>>>>>>>>>> leet code No.50 result sample 2: %v\n\n", ansFunc(2.1, 3))
-	fmt.Printf(">>>>>>>>>>> leet code No.50 result sample 3: %v\n\n", ansFunc(2, -2))
-	fmt.Printf(">>>>>>>>>>> my test: %v\n\n", ansFunc(2, 11))
-}
